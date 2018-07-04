@@ -4,6 +4,11 @@ const gravatr = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
+const passport = require('passport');
+
+//Load Input Validation
+const validateRegisterInput = require('../../validation/register');
+
 
 //load user model
 const User = require('../../models/User');
@@ -18,6 +23,11 @@ router.get('/test',(req,res)=>{
 // @route GET api/users/register
 // @access Public
 router.post('/register',(req,res)=>{
+    const {errors,isvalid} = validateRegisterInput(req.body)
+    //check validation
+    if(!isvalid){
+        return res.status(400).json(errors);
+    }
     User.findOne({email:req.body.email})
         .then(user => {
             if(user){
@@ -83,4 +93,14 @@ router.post('/login',(req,res)=>{
         })
 })
 
+
+//@route get api/users/current
+//@access private
+router.get('/current',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    res.json({
+        id:req.user.id,
+        name:req.user.name,
+        email:req.user.email
+    })
+});
 module.exports = router;
