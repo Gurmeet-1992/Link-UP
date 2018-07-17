@@ -144,7 +144,7 @@ router.post('/',passport.authenticate('jwt',{session:false}),(req,res)=>{
 
 //@route POST api/profile/experience
 //Add experience to profile
-// Private
+//@access Private
 
 router.post('/experience',passport.authenticate('jwt',{session:false}),(req,res)=>{
     const {errors,isValid} = validateExperienceInput(req.body);
@@ -171,7 +171,7 @@ router.post('/experience',passport.authenticate('jwt',{session:false}),(req,res)
 
 //@route POST api/profile/education
 //Add education to profile
-// Private
+//@access Private
 
 router.post('/education',passport.authenticate('jwt',{session:false}),(req,res)=>{
     const {errors,isValid} = validateEducationInput(req.body);
@@ -197,8 +197,8 @@ router.post('/education',passport.authenticate('jwt',{session:false}),(req,res)=
 });
 
 //@route DELETE api/profile/experience/:id
-//delted experience fro profile
-//@access privae
+//delete experience from profile
+//@access private
 
 router.delete('/experience/:exp_id',passport.authenticate('jwt',{session:false}),(req,res)=>{
     
@@ -220,8 +220,8 @@ router.delete('/experience/:exp_id',passport.authenticate('jwt',{session:false})
 });
 
 //@route DELETE api/profile/education/:id
-//delted education from profile
-//@access privae
+//delete education from profile
+//@access private
 
 router.delete('/education/:edu_id',passport.authenticate('jwt',{session:false}),(req,res)=>{
     
