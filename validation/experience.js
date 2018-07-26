@@ -1,27 +1,27 @@
-const Validator = require('validator');
-const isEmpty = require('./is-empty');
+const Validator = require("validator");
+const isEmpty = require("./is-empty");
 
-module.exports = function validateLExperienceInput(data){
-    let errors = {};
+module.exports = function validateLExperienceInput(data) {
+  let errors = {};
 
-    data.title = !isEmpty(data.title)?data.title:'';
-    data.company = !isEmpty(data.company)?data.company:'';
-    data.from = !isEmpty(data.from)?data.from:'';
+  data.title = !isEmpty(data.title) ? data.title : "";
+  data.company = !isEmpty(data.company) ? data.company : "";
+  data.from = !isEmpty(data.from) ? data.from : "";
 
-    if(Validator.isEmpty(data.title)){
-        errors.title = 'Job title is required'
-    }
+  if (Validator.isEmpty(data.title)) {
+    errors.title = "Job title is required";
+  }
 
-    if(Validator.isEmpty(data.company)){
-        errors.company = 'company name is required'
-    }
-    
-    if(Validator.isEmpty(data.from)){
-        errors.from = 'from date field is required'
-    }
+  if (Validator.isEmpty(data.company)) {
+    errors.company = "company name is required";
+  }
 
-    return {
-        errors,
-        isValid:isEmpty(errors)
-    }
-}
+  if (Validator.isEmpty(data.from)) {
+    errors.from = "from date field is required";
+  }
+
+  return {
+    errors,
+    isValid: isEmpty(errors)
+  };
+};
